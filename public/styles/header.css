@@ -2,22 +2,23 @@ header {
   height: 520px;
   width: auto;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   background-color: orange;
+  background-image: url("https://www.transparenttextures.com/patterns/absurdity.png");
 }
 
 .profile {
   position: relative;
-  top: 50px;
+  top: 70px;
 }
 
 .name {
   position: relative;
-  bottom: 60px;
+  bottom: 30px;
   display: flex;
   justify-content: center;
   color: white;
+  font-size: 36px;
 }
-
