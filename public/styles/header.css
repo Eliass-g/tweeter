@@ -1,0 +1,23 @@
+header {
+  height: 520px;
+  width: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+  background-color: orange;
+}
+
+.profile {
+  position: relative;
+  top: 50px;
+}
+
+.name {
+  position: relative;
+  bottom: 60px;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
