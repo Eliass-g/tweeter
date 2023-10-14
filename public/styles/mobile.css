@@ -1,0 +1,56 @@
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  header.top {
+    height: 27rem;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: orange;
+    background-image: url("https://www.transparenttextures.com/patterns/absurdity.png");
+  }
+
+  .profile {
+    position: relative;
+    top: 2rem;
+  }
+
+  nav {
+    height: 120px;
+    width: 100vw;
+    background-color: transparent;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    z-index:99;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .screen {
+    display: flex;
+    position: relative;
+    top: 13rem;
+    margin-right: 50px;
+    margin-left: 50px;
+  }
+
+  header.top {
+    height: 26rem;
+    width: 47rem;
+    margin-right: 50px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: orange;
+    background-image: url("https://www.transparenttextures.com/patterns/absurdity.png");
+  }
+
+  .profile {
+    position: relative;
+    top: 0px;
+  }
+}

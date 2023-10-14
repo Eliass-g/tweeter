@@ -23,6 +23,8 @@
   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
   <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
   <link rel="stylesheet" href="/styles/tweet-container.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/error-container.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/mobile.css" type="text/css" />
 
   <!-- External JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -45,7 +47,7 @@
     </div>
   </nav>
 
-
+<div class="screen">
   <header class="top">
     <div class="profile">
       <div class="image">
@@ -61,6 +63,8 @@
   <!-- Page-specific (main) content here -->
   <main class="container">
     <section class="new-tweet-sec">
+      <div id="error-container">
+      </div>
       <form class="form" action="/tweets" method="POST">
         <label class="label-text" for="tweet-text"><b>What are you humming about?</b></label>
         <textarea class="text-area" name="text" id="tweet-text"></textarea>
@@ -73,6 +77,7 @@
     <section id="tweets-container">
     </section>
   </main>
+</div>
 </body>
 
 </html>

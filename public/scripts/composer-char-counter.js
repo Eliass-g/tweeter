@@ -5,7 +5,9 @@ $(document).ready(function () {
     out.value = count;
     if (count < 0) {
       $(out).css("color", "red");
-    };
+    } else {
+      $(out).css("color", "#545149");
+    }
   });
 });
 

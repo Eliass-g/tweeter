@@ -5,6 +5,24 @@
  */
 $(document).ready(function () {
   // Test / driver code (temporary). Eventually will get this from the server.
+    
+  const escape = function (str) {
+    let div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
+
+  const createErrorElement = function (error) {
+    let $error = `
+    <div class="error-content">
+    ${error}
+    </div>
+    `;
+    $('#error-container').empty();
+    $('#error-container').prepend($error);
+    $('.error-content').hide();
+    $('.error-content').slideDown();
+  }
 
   const createTweetElement = function (tweet) {
     let $tweet = `
@@ -23,7 +41,7 @@ $(document).ready(function () {
       </div>
     </header>
     <div name="content">
-    <p name="text">${tweet.content.text}</p>
+    <p name="text">${escape(tweet.content.text)}</p>
     </div>
     <footer>
       <div class="tweet-time" name="created_at">
@@ -47,23 +65,6 @@ $(document).ready(function () {
     }
   }
 
-  $("form").on("submit", function (event) {
-    event.preventDefault();
-    const lengthOfText = $(this)[0].text.value.length;
-    if (lengthOfText > 140) {
-      alert("Exceeds 140 charater limit");
-      return;
-    }
-    if (lengthOfText === 0) {
-      alert("Empty submission");
-      return;
-    }
-    $.ajax({
-      url: '/tweets', method: 'POST', data: $("form").serialize()
-    })
-      .then(loadTweets());
-  });
-
   const loadTweets = function () {
     $.ajax('/tweets', { method: 'GET' })
       .then(function (data) {
@@ -72,4 +73,28 @@ $(document).ready(function () {
   }
 
   loadTweets();
+
+  $("form").on("submit", function (event) {
+    event.preventDefault();
+    const lengthOfText = $(this)[0].text.value.length;
+    $('.error-content').slideUp();
+    if (lengthOfText > 140) {
+      createErrorElement("Exceeds 140 charater limit");
+      return;
+    }
+    if (lengthOfText === 0) {
+      createErrorElement("Empty submission");
+      return;
+    }
+    $('#tweets-container').empty();
+    $.ajax({
+      url: '/tweets', method: 'POST', data: $("form").serialize()
+    })
+      .then(function() {
+        loadTweets();
+      });
+  });
+
 });
+
+//<script>('uh oh!');</script>
