@@ -16,3 +16,9 @@ This repository is the starter code for the project: Students will fork and clon
 
 - Express
 - Node 5.10.x or above
+
+## Screenshots
+
+!["Desktop View"](https://github.com/Eliass-g/tweeter/blob/master/docs/tweets.png?raw=true)
+
+!["Tablet View"](https://github.com/Eliass-g/tweeter/blob/master/docs/tweets-tablet-view.png?raw=true)
