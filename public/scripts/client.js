@@ -5,30 +5,6 @@
  */
 $(document).ready(function () {
   // Test / driver code (temporary). Eventually will get this from the server.
-  const data = [
-    {
-      "user": {
-        "name": "Newton",
-        "avatars": "https://i.imgur.com/73hZDYK.png",
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1697023496838
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": "https://i.imgur.com/nlhLi3I.png",
-        "handle": "@rd"
-      },
-      "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1697109896838
-    }
-  ];
 
   const createTweetElement = function (tweet) {
     let $tweet = `
@@ -51,7 +27,7 @@ $(document).ready(function () {
     </div>
     <footer>
       <div class="tweet-time" name="created_at">
-        ${tweet.created_at}
+        ${timeago.format(tweet.created_at)}
       </div>
       <div class="tweet-icons">
         <i class="fa-solid fa-flag fa-1xs"></i>
@@ -67,9 +43,33 @@ $(document).ready(function () {
   const renderTweets = function (tweets) {
     for (let tweet of tweets) {
       const $tweet = createTweetElement(tweet);
-      $('#tweets-container').append($tweet);
+      $('#tweets-container').prepend($tweet);
     }
   }
 
-  renderTweets(data);
+  $("form").on("submit", function (event) {
+    event.preventDefault();
+    const lengthOfText = $(this)[0].text.value.length;
+    if (lengthOfText > 140) {
+      alert("Exceeds 140 charater limit");
+      return;
+    }
+    if (lengthOfText === 0) {
+      alert("Empty submission");
+      return;
+    }
+    $.ajax({
+      url: '/tweets', method: 'POST', data: $("form").serialize()
+    })
+      .then(loadTweets());
+  });
+
+  const loadTweets = function () {
+    $.ajax('/tweets', { method: 'GET' })
+      .then(function (data) {
+        renderTweets(data);
+      });
+  }
+
+  loadTweets();
 });
