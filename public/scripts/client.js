@@ -3,16 +3,16 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-$(document).ready(function() {
+$(document).ready(function () {
   // Test / driver code (temporary). Eventually will get this from the server.
-    
-  const escape = function(str) {
+
+  const escape = function (str) {
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
     return div.innerHTML;
   };
 
-  const createErrorElement = function(error) {
+  const createErrorElement = function (error) {
     let $error = `
     <div class="error-content">
     ${error}
@@ -24,7 +24,7 @@ $(document).ready(function() {
     $('.error-content').slideDown();
   };
 
-  const createTweetElement = function(tweet) {
+  const createTweetElement = function (tweet) {
     let $tweet = `
   <article class="tweet">
     <header>
@@ -58,23 +58,24 @@ $(document).ready(function() {
     return $tweet;
   };
 
-  const renderTweets = function(tweets) {
+  const renderTweets = function (tweets) {
+    $('#tweets-container').empty();
     for (let tweet of tweets) {
       const $tweet = createTweetElement(tweet);
       $('#tweets-container').prepend($tweet);
     }
   };
 
-  const loadTweets = function() {
+  const loadTweets = function () {
     $.ajax('/tweets', { method: 'GET' })
-      .then(function(data) {
+      .then(function (data) {
         renderTweets(data);
       });
   };
 
   loadTweets();
 
-  $("form").on("submit", function(event) {
+  $("form").on("submit", function (event) {
     event.preventDefault();
     const lengthOfText = $(this)[0].text.value.length;
     $('.error-content').slideUp();
@@ -86,16 +87,13 @@ $(document).ready(function() {
       createErrorElement("Empty submission");
       return;
     }
-    $('#tweets-container').empty();
     $.ajax({
       url: '/tweets', method: 'POST', data: $("form").serialize()
     })
-      .then(function() {
+      .then(function () {
         $('.text-area').val('');
         loadTweets();
       });
   });
 
 });
-
-//<script>('uh oh!');</script>
