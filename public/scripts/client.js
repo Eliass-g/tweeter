@@ -40,7 +40,7 @@ $(document).ready(function() {
         ${tweet.user.handle}
       </div>
     </header>
-    <div name="content">
+    <div name="content" class="text-content" style="word-break: break-all">
     <p name="text">${escape(tweet.content.text)}</p>
     </div>
     <footer>
@@ -91,6 +91,7 @@ $(document).ready(function() {
       url: '/tweets', method: 'POST', data: $("form").serialize()
     })
       .then(function() {
+        $('.text-area').val('');
         loadTweets();
       });
   });

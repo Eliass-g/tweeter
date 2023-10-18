@@ -53,3 +53,7 @@ article.tweet footer {
 .fa-1xs:hover {
   color: bisque;
 }
+
+.fa-1xs {
+  cursor: pointer;
+}

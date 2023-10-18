@@ -1,4 +1,4 @@
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
+@media only screen and (max-width: 1024px) {
   header.top {
     height: 27rem;
     width: auto;
@@ -25,6 +25,10 @@
     justify-content: space-between;
     position: fixed;
     z-index:99;
+  }
+
+  .text-content {
+    word-break: break-all;
   }
 }
 
