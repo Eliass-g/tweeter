@@ -70,7 +70,10 @@ $(document).ready(function () {
     $.ajax('/tweets', { method: 'GET' })
       .then(function (data) {
         renderTweets(data);
-      });
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   };
 
   loadTweets();
@@ -93,7 +96,10 @@ $(document).ready(function () {
       .then(function () {
         $('.text-area').val('');
         loadTweets();
-      });
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   });
 
 });
